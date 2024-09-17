@@ -1,0 +1,27 @@
+Excepciones -- Errores
+Ejemplo de aplicacion
+
+method extraer(monto) {
+    if (monto <= saldo) {
+        saldo -= monto
+    }
+    else {
+        self.error ("El saldo " + saldo + " es insuficiente para el monto " + monto)
+    }
+}
+
+-- Correcta ejecucion
+
+method extraer(monto) {
+    self.validarExtraccion(monto)
+    saldo -= monto
+}
+
+method validarExtraccion(monto) {
+    if (monto > saldo) {
+    self.error ("El saldo " + saldo + " es insuficiente para el monto " + monto)
+    }
+}
+
+assert.throwException({objeto.method()}) es el mensaje que se utiliza en los test para cuando hay una excepcion en un metodo.
+Tiene en cuenta que tiene un error, da bien si da error.
