@@ -1,0 +1,42 @@
+import cuentas.*
+
+describe "cuentas" {
+
+
+    test "cuenta corriente" {
+        cuentaCorriente.depositar(1000)
+        cuentaCorriente.depositar(800)
+        cuentaCorriente.extraer(40)
+        cuentaCorriente.extraer(1)
+        assert.equals(1759, cuentaCorriente.saldo())
+    }
+
+    test "cuenta con gastos: costo operacion" {
+        cuentaConGastos.depositar(1000)
+        assert.equals(980, cuentaConGastos.saldo())
+    }
+
+    test "cuenta con gastos" {
+        cuentaConGastos.depositar(1000)
+        cuentaConGastos.depositar(800)
+        cuentaConGastos.extraer(40)
+        cuentaConGastos.extraer(1)
+        cuentaConGastos.extraer(1)
+        assert.equals(1718, cuentaConGastos.saldo())
+    }
+
+    test "cuentaCombinada" {
+        cuentaConGastos.saldo(2000)
+        
+        cuentaCombinada.depositar(1000)
+        cuentaCombinada.depositar(800)
+        cuentaCombinada.extraer(40)
+        cuentaCombinada.extraer(1900)
+        
+        assert.equals(1860, cuentaCombinada.saldo()) 
+
+        assert.equals(1760, cuentaCorriente.saldo()) 
+        assert.equals(100, cuentaConGastos.saldo()) 
+    }
+
+}

@@ -1,13 +1,16 @@
 import cosas.* 
+import cuentas.*
 
 // Si no hay ordenes no se usa forEach !!!
 
 object casaDePepeYJulian {
 	const property cosas = [] // La transforme en property para los test
+	var property cuenta = cuentaCorriente
 
-method comprar(cosa) {
-	cosas.add(cosa)
-}
+	method comprar(cosa) {
+		cuenta.extraer(cosa.precio())
+		cosas.add(cosa)
+	}
 
 method cantidadDeCosasCompradas() {
 	return cosas.size()
